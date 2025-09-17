@@ -116,6 +116,17 @@ resource "azurerm_windows_virtual_machine" "main" {
   }
 }
 
+resource "azurerm_resource_group" "rg" {
+  location = var.resource_group_location
+  name     = "${random_pet.prefix.id}-rg"
+
+  tags = {
+    Environment = "Dev"
+    Owner       = "Chris"
+  }
+}
+
+
 # Install IIS web server to the virtual machine
 resource "azurerm_virtual_machine_extension" "web_server_install" {
   name                       = "${random_pet.prefix.id}-wsi"
