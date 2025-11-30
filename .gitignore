@@ -1,15 +1,27 @@
-# Ignore Terraform state files
-infra/*.tfstate
-infra/*.tfstate.*
+# ===========================
+# Terraform – Global Ignores
+# ===========================
 
-# Ignore crash logs
-infra/crash.log
+# Terraform working directories (recursively)
+**/.terraform/
 
-# Ignore Terraform working directory
-infra/.terraform/
+# Terraform state files (recursively)
+**/*.tfstate
+**/*.tfstate.*
 
-# Ignore Terraform lock file (optional, if it shouldn't be shared)
-infra/.terraform.lock.hcl
+# Terraform crash logs
+**/crash.log
+
+# Terraform lock files
+**/.terraform.lock.hcl
+
+# Terraform variable files (DO NOT COMMIT SECRETS)
+**/*.tfvars
+**/*.auto.tfvars
+
+# ===========================
+# Project-specific
+# ===========================
 
 # Misc scratchpad
 misc.txt
