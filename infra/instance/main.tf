@@ -19,12 +19,15 @@ resource "azurerm_subnet" "my_terraform_subnet" {
   address_prefixes     = ["10.0.1.0/24"]
 }
 
-# Create public IPs
+# Create public IP
+# NOTE: Basic SKU public IPs were retired by Azure on Sept 30, 2025.
+# Standard SKU requires Static allocation (Dynamic is not supported on Standard).
 resource "azurerm_public_ip" "my_terraform_public_ip" {
   name                = "${random_pet.prefix.id}-public-ip"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
+  sku                 = "Standard"
 }
 
 # Create Network Security Group and rules
